@@ -63,9 +63,9 @@ void loop()
     if(tempValue >= 00 && tempValue <= 99)
     {
       analogWrite(MOTOR, ((tempTens * 10) + tempUnits) * 2);
-          DisplayNumbers(1);
-    delay(200);
-    DisplayNumbers(2);
+      DisplayNumbers(1);
+      delay(200);
+      DisplayNumbers(2);
     	delay(200);
     }
     else
