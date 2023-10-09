@@ -47,3 +47,20 @@ Se agregó un cambio en la línea 127, seteándose la potencia de salida del pin
 El dispositivo implementado es un motor de corriente contínua, el cual consiste en el mecanismo inverso a un generador eléctrico.
 El motor está rodeado por dos imanes que generan un campo magnético constante. En su interior se encuentra el rotor, rodeado por bobinados de cobre con 2 terminales cada uno. Las terminales hacen contacto con 2 piezas de carbón, conectadas a los pines del motor.
 Cuando una corriente eléctrica corre de un pin al otro, pasa a través de la pieza de carbón al la 1er terminal del bobinado. Al correr por el bobinado hacia la segunda genera un campo magnético, el cual se alineará en relación al campo permanente generado por los imanes. Al hacer esto, girará y alternará las terminales y su contacto con las piezas o escobillas de carbón; si hay sólo 1 bobinado, el campo magnético se revertirá, haciendo que el motor vuelva a girar. En caso de haber varios bobinados, el efecto ocurrirá con el siguiente, continuando con el empuje. El ciclo se repetirá, haciendo que el rotor gire hasta que la corriente eléctrica deje circular.
+
+---
+
+# Implementacion de TMP36 (medidor de temperatura)
+
+A esta tercera parte le corresponde el archivo **code3.c++**.
+
+Se agregó un slider en el pin13, configurado como *INPUT PULLUP* OUTPUT, y el componente TMP36 con su pin vOUT (el del medio) conectado al pin A0, para su lectura.
+
+
+![circuit3](images/Screenshot_4.png)
+
+Se movió el código previo a una sección de *else*, poniendo en 1er lugar, en el *if*, a la lectura del nuevo slider.
+Si el slider nuevo se encuentra en LOW, entonces el conjunto entrará en modo de lectura de temperatura, en el cual se ejecuta el contenido del *if* en el **loop** y se procede a la lectura del pin A0 y a la aplicación de una ecuación para poder estimar la temperatura aproximada que está experimentando el componente.
+
+El motor DC agregado en el paso anterior se supedita entonces a la lectura de temperatura, la cual también es mostrada mediante el display doble de 7 segmentos.
+Si la temperatura supera los 99 grados o pasa por debajo de los 00, tanto el display como el motor se apagan, volviendo a encenderse cuando la temperatura retorna al rango 00-99.
