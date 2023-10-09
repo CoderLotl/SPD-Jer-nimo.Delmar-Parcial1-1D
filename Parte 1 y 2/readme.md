@@ -42,3 +42,8 @@ El pin 3 pasó a ser el del *MOTOR*, mientras que el del botón *DOWN* pasó a s
 Se agregó un cambio en la línea 127, seteándose la potencia de salida del pin que tiene capacidades analógicas acorde con el número del contador, pero multiplicado por 2 (para que sea sensible y notoria la velocidad).
 
 ![circuit2](./images/Screenshot_3.png)
+
+### Detalles del componente:
+El dispositivo implementado es un motor de corriente contínua, el cual consiste en el mecanismo inverso a un generador eléctrico.
+El motor está rodeado por dos imanes que generan un campo magnético constante. En su interior se encuentra el rotor, rodeado por bobinados de cobre con 2 terminales cada uno. Las terminales hacen contacto con 2 piezas de carbón, conectadas a los pines del motor.
+Cuando una corriente eléctrica corre de un pin al otro, pasa a través de la pieza de carbón al la 1er terminal del bobinado. Al correr por el bobinado hacia la segunda genera un campo magnético, el cual se alineará en relación al campo permanente generado por los imanes. Al hacer esto, girará y alternará las terminales y su contacto con las piezas o escobillas de carbón; si hay sólo 1 bobinado, el campo magnético se revertirá, haciendo que el motor vuelva a girar. En caso de haber varios bobinados, el efecto ocurrirá con el siguiente, continuando con el empuje. El ciclo se repetirá, haciendo que el rotor gire hasta que la corriente eléctrica deje circular.
