@@ -50,7 +50,7 @@ Cuando una corriente eléctrica corre de un pin al otro, pasa a través de la pi
 
 ---
 
-# Implementacion de TMP36 (medidor de temperatura)
+# Implementación de TMP36 (medidor de temperatura)
 
 A esta tercera parte le corresponde el archivo **code3.c++**.
 
