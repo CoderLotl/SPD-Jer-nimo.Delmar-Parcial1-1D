@@ -7,16 +7,17 @@
  */
 #define MOTOR 3
 #define SENSOR A0
-#define UP 2    // BOTON UP = PIN 2
-#define DOWN 12 // BOTON DOWN = PIN 3
+#define UP 2                                      // BOTON UP = PIN 2
+#define DOWN 12                                   // BOTON DOWN = PIN 3
 #define SLIDER 4
 #define TEMP_SLIDER 13
-#define UNITS A5 // CATODO UNIDADES = PIN A5
-#define TENS A4  // CATODO DECENAS = PIN A4
-int units;       // GLOBAL INT VAR 'units'
-int tens;        // GLOBAL INT VAR 'tens'
-bool temp;
-float tempValue;
+#define UNITS A5                                  // CATODO UNIDADES = PIN A5
+#define TENS A4                                   // CATODO DECENAS = PIN A4
+int units;                                        // GLOBAL INT VAR 'units'
+int tens;                                         // GLOBAL INT VAR 'tens'
+bool temp;                                        // GLOBAL FLAG TEMP
+bool bump;                                        // GLOBAL FLAG REBOTE
+int tempValue;
 int tempUnits;
 int tempTens;
 bool primes;                                      // GLOBAL BOOL VAR 'primes'
@@ -24,7 +25,8 @@ const int pinNumbers[] = {10, 11, 7, 6, 5, 9, 8}; // ARRAY DE PINES - {A, B, C, 
 
 void setup()
 {
-  units = 0;
+  bump = false;
+  units = 0;  
   tens = 0;
   tempUnits = 0;
   tempTens = 0;
@@ -32,7 +34,7 @@ void setup()
   temp = false;
   pinMode(UP, INPUT_PULLUP);   // BOTON UP
   pinMode(DOWN, INPUT_PULLUP); // BOTON DOWN
-  pinMode(TEMP_SLIDER, INPUT_PULLUP);
+  pinMode(TEMP_SLIDER, INPUT_PULLUP);  
   pinMode(SLIDER, INPUT_PULLUP); // SLIDER PRIMOS
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
@@ -49,27 +51,27 @@ void setup()
 
 void loop()
 {
-  if (digitalRead(TEMP_SLIDER) == LOW)
+  if(digitalRead(TEMP_SLIDER) == LOW)
   {
     temp = true;
-    float sensorValue = analogRead(SENSOR);
-    tempValue = ((sensorValue / 1024.0) * 500.0) - 50.0;
+    int sensorValue = analogRead(SENSOR);    
+    tempValue = map(sensorValue, 20, 350, -40, 125);
     tempUnits = int(tempValue) % 10;
     tempTens = int(tempValue) / 10;
-
-    if (tempValue >= 00 && tempValue <= 99)
+    
+    if(tempValue >= 00 && tempValue <= 99)
     {
       analogWrite(MOTOR, ((tempTens * 10) + tempUnits) * 2);
-      DisplayNumbers(1);
-      delay(200);
-      DisplayNumbers(2);
-      delay(200);
+          DisplayNumbers(1);
+    delay(200);
+    DisplayNumbers(2);
+    	delay(200);
     }
     else
     {
       analogWrite(MOTOR, 0);
       TurnOff();
-    }
+    }    
   }
   else
   {
@@ -112,7 +114,7 @@ void loop()
     // Serial.print(tens);
     // Serial.println(units);
   }
-
+  BumpCheck();
   // END LOOP
 }
 
@@ -123,11 +125,11 @@ void loop()
 void Input()
 {
   // UP
-  if (digitalRead(UP) == LOW)
+  if (digitalRead(UP) == LOW && bump == false)
   {
     if (units < 9)
     {
-      units++;
+      units++;      
     }
     else
     {
@@ -141,9 +143,10 @@ void Input()
         tens = 0;
       }
     }
+    bump = true;
   }
   // DOWN
-  if (digitalRead(DOWN) == LOW)
+  if (digitalRead(DOWN) == LOW && bump == false)
   {
     if (tens == 0 && units == 0)
     {
@@ -162,9 +165,22 @@ void Input()
         tens--;
       }
     }
+    bump = true;
   }
   analogWrite(MOTOR, ((tens * 10) + units) * 2);
   return;
+}
+
+/**
+ * @brief Chequeo anti-bumping. Evita que al mantener presionado cualquiera de los botones se siga tomando el input en cada
+ * vuelta de loop().
+ */
+void BumpCheck()
+{
+  if ( (digitalRead(UP) == HIGH && digitalRead(DOWN) == HIGH ) && bump == true)
+  {
+    bump = false;
+  }
 }
 
 /**
@@ -198,7 +214,7 @@ void SetLeds(int counter)
   int displayToShow; // Si el valor de 'counter' es 1...
   if (counter == 1)
   {
-    if (temp == true)
+    if(temp == true)
     {
       displayToShow = tempUnits;
     }
@@ -209,7 +225,7 @@ void SetLeds(int counter)
   }
   else
   {
-    if (temp == true)
+    if(temp == true)
     {
       displayToShow = tempTens;
     }
