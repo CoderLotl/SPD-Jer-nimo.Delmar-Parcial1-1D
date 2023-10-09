@@ -64,3 +64,7 @@ Si el slider nuevo se encuentra en LOW, entonces el conjunto entrará en modo de
 
 El motor DC agregado en el paso anterior se supedita entonces a la lectura de temperatura, la cual también es mostrada mediante el display doble de 7 segmentos.
 Si la temperatura supera los 99 grados o pasa por debajo de los 00, tanto el display como el motor se apagan, volviendo a encenderse cuando la temperatura retorna al rango 00-99.
+
+### Extra:
+Se agregó una función anti-bumping a fin de evitar que, al mantener cualquiera de los botones apretados, el contador siga subiendo o bajando. Ahora es necesario que la función principal **loop()** haga 1 revolución sin ningún botón apretado para que la bandera se resetee y el contador vuelva a responder.
+Aunque este mecanismo podría ser opcional, en la placa Arduino quedan sólo 3 pines libres, por lo cual se descartó la opcionalidad del mecanismo.
