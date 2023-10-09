@@ -54,7 +54,7 @@ Cuando una corriente eléctrica corre de un pin al otro, pasa a través de la pi
 
 A esta tercera parte le corresponde el archivo **code3.c++**.
 
-Se agregó un slider en el pin13, configurado como *INPUT PULLUP* OUTPUT, y el componente TMP36 con su pin vOUT (el del medio) conectado al pin A0, para su lectura.
+Se agregó un slider en el pin13, configurado como *INPUT PULLUP*, y el componente TMP36 con su pin vOUT (el del medio) conectado al pin A0, para su lectura.
 
 
 ![circuit3](images/Screenshot_4.png)
