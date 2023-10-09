@@ -4,6 +4,7 @@
  * Parcial 1
  * Comisión: 1D
  * 2023
+ * GIT del proyecto: https://github.com/CoderLotl/SPD-Jer-nimo.Delmar-Parcial1-1D
  */
 #define MOTOR 3
 #define SENSOR A0
