@@ -74,3 +74,16 @@ Si la temperatura supera los 99 grados o pasa por debajo de los 00, tanto el dis
 #### [ Extra ]:
 **Se agregó una función anti-bumping** a fin de evitar que, al mantener cualquiera de los botones apretados, el contador siga subiendo o bajando. Ahora es necesario que la función principal **loop()** haga 1 revolución sin ningún botón apretado para que la bandera se resetee y el contador vuelva a responder.
 Aunque este mecanismo podría ser opcional, en la placa Arduino quedan sólo 3 pines libres, por lo cual se descartó la opcionalidad del mecanismo.
+
+# Implementación de FOTODIODO
+
+A esta cuarta parte, que corresponde a la parte 3 del parcial domiciliario, le corresponde el archivo **code4.c++**.
+
+Se agregó un slider en el pin A1.
+
+Se agregó un fotodiodo conectado de forma inversa al pin A2, y una resistencia de 50k-ohms en modo pull-up entre el pin A2 y el GND.
+
+*El fotodiodo produce una corriente eléctrica cuando es expuesto a la luz. Dicha corriente eléctrica posee una tensión que va hasta aproximadamente 0.45mV.*
+
+Se modificó el código para que la medición de luz tenga precedencia sobre las otras modalidades.
+Se mapeó el valor recibido por A2 de 49 a 1023 a un rango de 00 a 99, que luego se muestra por los displays.

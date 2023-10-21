@@ -6,12 +6,12 @@
  * 2023
  * GIT del proyecto: https://github.com/CoderLotl/SPD-Jer-nimo.Delmar-Parcial1-1D
  */
-#define MOTOR 3
-#define SENSOR A0
+#define MOTOR 3                                   // SALIDA ANALOGICA MOTOR
+#define SENSOR A0                                 // SENSOR DE TEMP
 #define UP 2                                      // BOTON UP = PIN 2
 #define DOWN 12                                   // BOTON DOWN = PIN 3
-#define SLIDER 4
-#define TEMP_SLIDER 13
+#define SLIDER 4                                  // SLIDER PRIMOS
+#define TEMP_SLIDER 13                            // SLIDER TEMP
 #define UNITS A5                                  // CATODO UNIDADES = PIN A5
 #define TENS A4                                   // CATODO DECENAS = PIN A4
 int units;                                        // GLOBAL INT VAR 'units'
@@ -33,10 +33,10 @@ void setup()
   tempTens = 0;
   tempValue = 0;
   temp = false;
-  pinMode(UP, INPUT_PULLUP);   // BOTON UP
-  pinMode(DOWN, INPUT_PULLUP); // BOTON DOWN
-  pinMode(TEMP_SLIDER, INPUT_PULLUP);  
-  pinMode(SLIDER, INPUT_PULLUP); // SLIDER PRIMOS
+  pinMode(UP, INPUT_PULLUP);            // BOTON UP
+  pinMode(DOWN, INPUT_PULLUP);          // BOTON DOWN
+  pinMode(TEMP_SLIDER, INPUT_PULLUP);   // SLIDER TEMP
+  pinMode(SLIDER, INPUT_PULLUP);        // SLIDER PRIMOS
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
@@ -63,9 +63,9 @@ void loop()
     if(tempValue >= 00 && tempValue <= 99)
     {
       analogWrite(MOTOR, ((tempTens * 10) + tempUnits) * 2);
-      DisplayNumbers(1);
-      delay(200);
-      DisplayNumbers(2);
+          DisplayNumbers(1);
+    delay(200);
+    DisplayNumbers(2);
     	delay(200);
     }
     else
