@@ -75,6 +75,8 @@ Si la temperatura supera los 99 grados o pasa por debajo de los 00, tanto el dis
 **Se agregó una función anti-bumping** a fin de evitar que, al mantener cualquiera de los botones apretados, el contador siga subiendo o bajando. Ahora es necesario que la función principal **loop()** haga 1 revolución sin ningún botón apretado para que la bandera se resetee y el contador vuelva a responder.
 Aunque este mecanismo podría ser opcional, en la placa Arduino quedan sólo 3 pines libres, por lo cual se descartó la opcionalidad del mecanismo.
 
+---
+
 # Implementación de FOTODIODO
 
 A esta cuarta parte, que corresponde a la parte 3 del parcial domiciliario, le corresponde el archivo **code4.c++**.
