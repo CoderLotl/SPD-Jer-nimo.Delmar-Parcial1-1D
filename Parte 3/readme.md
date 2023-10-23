@@ -91,3 +91,90 @@ Se modificó el código para que la medición de luz tenga precedencia sobre las
 Se mapeó el valor recibido por A2 de 49 a 1023 a un rango de 00 a 99, que luego se muestra por los displays.
 
 ![circuit3](./images/Screenshot_5.png)
+
+---
+
+# Función significativa
+
+    void SetLeds(int counter, int option)
+    {
+        int displayToShow; // Si el valor de 'counter' es 1...
+        if (counter == 1)
+        {
+            switch (option)
+            {
+                case 1:
+                    displayToShow = tempUnits;
+                    break;        
+                case 2:
+                    displayToShow = units; // ... se toma el valor de las unidades.
+                    break;
+                case 3:
+                    displayToShow = lightUnits;
+                    break;
+            }        
+        }
+        else
+        {        
+            switch (option)
+            {
+                case 1:
+                    displayToShow = tempTens;
+                    break;        
+                case 2:
+                    displayToShow = tens; // ... se toma el valor de las unidades.
+                    break;
+                case 3:
+                    displayToShow = lightTens;
+            }
+        }
+
+        // Arrays con los estados HIGH/LOW correspondientes a los segmentos {A, B, C, D, E, F, G};
+        int v0[] = {1, 1, 1, 1, 1, 1, 0}; // 0
+        int v1[] = {0, 1, 1, 0, 0, 0, 0}; // 1
+        int v2[] = {1, 1, 0, 1, 1, 0, 1}; // 2
+        int v3[] = {1, 1, 1, 1, 0, 0, 1}; // 3
+        int v4[] = {0, 1, 1, 0, 0, 1, 1}; // 4
+        int v5[] = {1, 0, 1, 1, 0, 1, 1}; // 5
+        int v6[] = {1, 0, 1, 1, 1, 1, 1}; // 6
+        int v7[] = {1, 1, 1, 0, 0, 0, 0}; // 7
+        int v8[] = {1, 1, 1, 1, 1, 1, 1}; // 8
+        int v9[] = {1, 1, 1, 1, 0, 1, 1}; // 9
+
+        switch (displayToShow) // En base al valor unitario a mostrar se le pasa a LedSetter el array correspondiente.
+        {
+        case 0:
+            LedSetter(v0);
+            break;
+        case 1:
+            LedSetter(v1);
+            break;
+        case 2:
+            LedSetter(v2);
+            break;
+        case 3:
+            LedSetter(v3);
+            break;
+        case 4:
+            LedSetter(v4);
+            break;
+        case 5:
+            LedSetter(v5);
+            break;
+        case 6:
+            LedSetter(v6);
+            break;
+        case 7:
+            LedSetter(v7);
+            break;
+        case 8:
+            LedSetter(v8);
+            break;
+        case 9:
+            LedSetter(v9);
+            break;
+        }
+    }
+
+Una de las funciones más importantes del código. Está encargada de controlar los números que se ven en los displays en conjunto con la función **LedSetter( int[] )** (la cual itera por todos los pines definidos como los pines para los segmentos led y, en base al valor HIGH o LOW recibido para el pin, los setea).
+En base al parámetro *int counter* recibido trabajará con la variable global de unidades o decenas del modo correspondiente, y en base al parámetro *int option* alternará entre números, luz, y temperatura.
