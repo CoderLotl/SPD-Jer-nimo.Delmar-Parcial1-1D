@@ -211,14 +211,14 @@ void DisplayNumbers(int display, int option)
 {
     switch (display)
     {
-    case 1:
-        digitalWrite(UNITS, HIGH);
-        digitalWrite(TENS, LOW);
-        break;
-    case 2:
-        digitalWrite(UNITS, LOW);
-        digitalWrite(TENS, HIGH);
-        break;
+        case 1:
+            digitalWrite(UNITS, HIGH);
+            digitalWrite(TENS, LOW);
+            break;
+        case 2:
+            digitalWrite(UNITS, LOW);
+            digitalWrite(TENS, HIGH);
+            break;
     }
     SetLeds(display, option);
 }
@@ -247,8 +247,7 @@ void SetLeds(int counter, int option)
         }        
     }
     else
-    {
-        
+    {        
         switch (option)
         {
             case 1:
