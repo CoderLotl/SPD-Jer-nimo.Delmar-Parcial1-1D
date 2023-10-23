@@ -62,9 +62,9 @@ void loop()
         lightUnits = int(lightValue) % 10;
         lightTens = int(lightValue) / 10;
 
-        DisplayNumbers(1, 1);
+        DisplayNumbers(1, 3);
         delay(200);
-        DisplayNumbers(2, 1);
+        DisplayNumbers(2, 3);
         delay(200);
     }
     else
@@ -79,9 +79,9 @@ void loop()
             if (tempValue >= 00 && tempValue <= 99)
             {
                 //analogWrite(MOTOR, ((tempTens * 10) + tempUnits) * 2);   <<< ==== FUNCIONABA EN MODO TEMPERATURA
-                DisplayNumbers(1, 3);
+                DisplayNumbers(1, 1);
                 delay(200);
-                DisplayNumbers(2, 3);
+                DisplayNumbers(2, 1);
                 delay(200);
             }
             else
