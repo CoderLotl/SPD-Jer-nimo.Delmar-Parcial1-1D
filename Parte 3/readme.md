@@ -34,7 +34,7 @@ Los 2 displays poseen el *Common* como cátodo, y sus pines son A4 (unidades) y 
 - F = 9
 - G = 8
 
-![circuit](./images/Screenshot_1.png)
+![circuit](../Parte%201%20y%202/images/Screenshot_1.png)
 
 ---
 
@@ -46,7 +46,7 @@ El pin 3 pasó a ser el del *MOTOR*, mientras que el del botón *DOWN* pasó a s
 
 Se agregó un cambio en la línea 127, seteándose la potencia de salida del pin que tiene capacidades analógicas acorde con el número del contador, pero multiplicado por 2 (para que sea sensible y notoria la velocidad).
 
-![circuit2](./images/Screenshot_3.png)
+![circuit2](../Parte%201%20y%202/images/Screenshot_3.png)
 
 ### Detalles del componente:
 El dispositivo implementado es un motor de corriente contínua, el cual consiste en el mecanismo inverso a un generador eléctrico.
@@ -62,7 +62,7 @@ A esta tercera parte le corresponde el archivo **code3.c++**.
 Se agregó un slider en el pin13, configurado como *INPUT PULLUP*, y el componente TMP36 con su pin vOUT (el del medio) conectado al pin A0, para su lectura.
 
 
-![circuit3](images/Screenshot_4.png)
+![circuit3](../Parte%201%20y%202/images/Screenshot_4.png)
 
 Se movió el código previo a una sección de *else*, poniendo en 1er lugar, en el *if*, a la lectura del nuevo slider.
 **Si el slider nuevo se encuentra en LOW, entonces el conjunto entrará en modo de lectura de temperatura**, en el cual se ejecuta el contenido del *if* en el **loop** y se procede a la lectura del pin A0 y a la aplicación de una ecuación para poder estimar la temperatura aproximada que está experimentando el componente.
@@ -87,3 +87,5 @@ Se agregó un fotodiodo conectado de forma inversa al pin A2, y una resistencia 
 
 Se modificó el código para que la medición de luz tenga precedencia sobre las otras modalidades.
 Se mapeó el valor recibido por A2 de 49 a 1023 a un rango de 00 a 99, que luego se muestra por los displays.
+
+![circuit3](./images/Screenshot_5.png)
